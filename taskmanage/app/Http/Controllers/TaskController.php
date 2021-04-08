@@ -22,7 +22,9 @@ class TaskController extends Controller
            
             $tasks = Task::where('user_id',$user->id)
             ->join('users' , 'tasks.user_id', '=', 'users.id')
-            ->select('title','description','name','email', 'tasks.created_at','tasks.updated_at','user_id' , 'tasks.id' , 'tasks.completed')->get();
+            ->select('title','description','name','email', 'tasks.created_at','tasks.updated_at','user_id' , 'tasks.id' , 'tasks.completed')
+            ->orderBy('tasks.id', 'desc')
+            ->get();
           
 
             if(count($tasks) > 0) {
